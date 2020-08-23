@@ -1,20 +1,26 @@
 import * as React from 'react';
 import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import { Home } from './pages/Home';
+import { Provider } from 'react-redux';
+import Metronome from './pages/MetronomePage/containers/MetronomePageContainer';
+import configureStore from './store/configureStore';
+
+const store = configureStore();
 
 export default class App extends React.Component {
-    render(): JSX.Element {
+    render() {
         return (
-            <Router>
-                <div>
-                    <nav>
-                        <Link to="/">Home</Link>
-                    </nav>
-                    <Switch>
-                        <Route exact path="/" component={Home} />
-                    </Switch>
-                </div>
-            </Router>
+            <Provider store={store}>
+                <Router>
+                    <div>
+                        <nav>
+                            <Link to="/">Metronome</Link>
+                        </nav>
+                        <Switch>
+                            <Route exact path="/" component={Metronome} />
+                        </Switch>
+                    </div>
+                </Router>
+            </Provider>
         );
     }
 }
