@@ -1,15 +1,17 @@
 import React, { FunctionComponent } from 'react';
 import '../styles/metronome-page.scss';
-import BPMComponent from '../containers/BPMContainer';
+import BPM from '../containers/BPMContainer';
+import BPMSlider from '../containers/BPMSliderContainer';
 
-interface Props {
-    bpm: number;
-}
+interface Props {}
 
-const MetronomePageComponent: FunctionComponent<Props> = (props: Props) => (
+const MetronomePageComponent: FunctionComponent<Props> = () => (
     <div className="home-page-container">
         <div className="home-page-center-content">
-            <BPMComponent bpm={props.bpm} />
+            <div className="bpm-container">
+                <BPM />
+                <BPMSlider />
+            </div>
         </div>
     </div>
 );

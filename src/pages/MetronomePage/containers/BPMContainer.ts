@@ -1,14 +1,12 @@
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
 
-import { setBPM } from '../../../actionCreators/metronomeActionCreators';
-import { MetronomeAction } from '../../../actionTypes/metronomeActionTypes';
+import { AppState } from '../../../reducers/rootReducer';
 import BPMComponent from '../components/BPMComponent';
 
-const mapDispatchToProps = (dispatch: Dispatch<MetronomeAction>) => ({
-    setBPM: (bpm: number) => {
-        dispatch(setBPM(bpm));
-    },
-});
+const mapStateToProps = (state: AppState) => {
+    return {
+        bpm: state.metronome.bpm,
+    };
+};
 
-export default connect(null, mapDispatchToProps)(BPMComponent);
+export default connect(mapStateToProps, {})(BPMComponent);

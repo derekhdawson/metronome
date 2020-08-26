@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import Metronome from './pages/MetronomePage/containers/MetronomePageContainer';
+import Metronome from './pages/MetronomePage/components/MetronomePageComponent';
 import configureStore from './store/configureStore';
 import './App.scss';
 
