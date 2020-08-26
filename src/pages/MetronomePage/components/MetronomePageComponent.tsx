@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import '../styles/metronome-page.css';
+import '../styles/metronome-page.scss';
 import BPMComponent from '../containers/BPMContainer';
 
 interface Props {
