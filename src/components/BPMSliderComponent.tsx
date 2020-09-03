@@ -1,22 +1,20 @@
 import React, { FunctionComponent } from 'react';
 import '../styles/bpm-component.scss';
-import plusIcon from '../../../images/plus-icon.png';
-import minusIcon from '../../../images/minus-icon.png';
-
-const MIN_BPM = 20;
-const MAX_BPM = 260;
+import plusIcon from '../images/plus-icon.png';
+import minusIcon from '../images/minus-icon.png';
+import { MIN_BPM, MAX_BPM } from '../constants/metronomeConstants';
 
 type Props = {
     bpm: number;
-    setBPM: (bpm: number) => void;
-    setBPMLongPress: () => void;
+    setBPM: (bpm: number) => void; // used by slider
+    updateBPM: (shouldIncrement: boolean, isActive: boolean, lastActiveUpdate: number) => void; // used by plus minus buttons
 };
 
 const BPMSliderComponent: FunctionComponent<Props> = (props: Props) => {
-    const { bpm } = props;
+    const { bpm, setBPM, updateBPM } = props;
     return (
         <div className="bpm-slider-container">
-            {getIncrementDecrementBPMButton(false, props.bpm, props.setBPM, props.setBPMLongPress)}
+            {getIncrementDecrementBPMButton(false, updateBPM)}
             <input
                 className="bpm-slider"
                 id="bpm-slider"
@@ -27,19 +25,17 @@ const BPMSliderComponent: FunctionComponent<Props> = (props: Props) => {
                 step="1"
                 value={bpm}
                 onChange={(event) => {
-                    props.setBPM(parseInt(event.target.value, 10));
+                    setBPM(parseInt(event.target.value, 10));
                 }}
             ></input>
-            {getIncrementDecrementBPMButton(true, props.bpm, props.setBPM, props.setBPMLongPress)}
+            {getIncrementDecrementBPMButton(true, updateBPM)}
         </div>
     );
 };
 
 function getIncrementDecrementBPMButton(
     shouldIncrement: boolean,
-    bpm: number,
-    setBPM: (bpm: number) => void,
-    setBPMLongPress: () => void,
+    updateBPM: (shouldIncrement: boolean, isActive: boolean, lastActiveUpdate: number) => void,
 ): JSX.Element {
     let className: string;
     let imageSource: string;
@@ -55,34 +51,26 @@ function getIncrementDecrementBPMButton(
         altTag = 'decrement button';
     }
 
-    const onClick = () => {
-        if (shouldIncrement && bpm < MAX_BPM) {
-            setBPM(bpm + 1);
-        } else if (bpm > MIN_BPM) {
-            setBPM(bpm - 1);
-        }
-    };
-
     return (
         <img
             className={className}
             src={imageSource}
             alt={altTag}
-            onClick={onClick}
+            draggable={false}
             onMouseDown={() => {
-                setBPMLongPress();
+                updateBPM(shouldIncrement, true, Date.now());
             }}
             onMouseUp={() => {
-                console.log('test');
+                updateBPM(shouldIncrement, false, Date.now());
             }}
             onMouseLeave={() => {
-                console.log('test');
+                updateBPM(shouldIncrement, false, Date.now());
             }}
             onTouchStart={() => {
-                console.log('test');
+                updateBPM(shouldIncrement, true, Date.now());
             }}
             onTouchEnd={() => {
-                console.log('test');
+                updateBPM(shouldIncrement, false, Date.now());
             }}
         />
     );

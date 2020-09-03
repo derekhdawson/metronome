@@ -1,6 +1,6 @@
 import { all, fork } from 'redux-saga/effects';
-import { watchSetBPMLongPress } from './metronomeSaga';
+import { watchUpdateBPM } from './bpmSaga';
 
 export default function* rootSaga() {
-    yield all([fork(watchSetBPMLongPress)]);
+    yield all([fork(watchUpdateBPM)]);
 }

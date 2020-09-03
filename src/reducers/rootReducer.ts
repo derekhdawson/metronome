@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import metronomeReducer from './metronomeReducer';
+import bpmReducer from './bpmReducer';
 
 const rootReducer = combineReducers({
-    metronome: metronomeReducer,
+    bpm: bpmReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
