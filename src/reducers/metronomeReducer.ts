@@ -1,4 +1,4 @@
-import * as actions from '../actionTypes/metronomeActionTypes';
+import { MetronomeAction, SET_BPM } from '../actions/metronomeActions';
 
 export interface MetronomeState {
     bpm: number;
@@ -10,10 +10,10 @@ const initialState: MetronomeState = {
 
 export default function metronomeReducer(
     state: MetronomeState = initialState,
-    action: actions.MetronomeAction,
+    action: MetronomeAction,
 ): MetronomeState {
     switch (action.type) {
-        case actions.SET_BPM:
+        case SET_BPM:
             return {
                 bpm: action.bpm,
             };

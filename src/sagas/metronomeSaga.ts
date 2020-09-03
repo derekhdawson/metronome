@@ -1,5 +1,11 @@
-import { put, call, takeEvery, all, fork } from 'redux-saga/effects';
+import { takeEvery } from 'redux-saga/effects';
+import { SET_BPM_LONG_PRESS } from '../actions/metronomeActions';
 
-export default function* metronomeSaga() {
+export function* setBPMLongPress() {
+    console.log(SET_BPM_LONG_PRESS);
     yield 1;
+}
+
+export function* watchSetBPMLongPress() {
+    yield takeEvery(SET_BPM_LONG_PRESS, setBPMLongPress);
 }
