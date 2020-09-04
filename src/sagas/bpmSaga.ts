@@ -2,17 +2,17 @@ import { put, select, takeLatest, delay } from 'redux-saga/effects';
 import { UPDATE_BPM, INCREMENT_BPM, DECREMENT_BPM } from '../actions/bpmActions';
 import { AppState } from '../reducers/rootReducer';
 import {
-    BPM_UPDATE_INTERVAL_TIME_1,
-    BPM_UPDATE_INTERVAL_TIME_2,
-    BPM_UPDATE__DELAY_TIME_1,
-    BPM_UPDATE__DELAY_TIME_2,
-    BPM_UPDATE__DELAY_TIME_3,
+    BPM_UPDATE_INTERVAL_TIME_FAST,
+    BPM_UPDATE_INTERVAL_TIME_VERY_FAST,
+    BPM_UPDATE_DELAY_TIME_NORMAL,
+    BPM_UPDATE_DELAY_TIME_FAST,
+    BPM_UPDATE_DELAY_VERY_FAST,
 } from '../constants/metronomeConstants';
 
-export function* updateBPM() {
+function* updateBPM() {
     const state: AppState = yield select();
     const bpmLastActiveUpdate = state.bpm.bpmLastActiveUpdate;
-    let delayTime = BPM_UPDATE__DELAY_TIME_1;
+    let delayTime = BPM_UPDATE_DELAY_TIME_NORMAL;
     while (true) {
         const state: AppState = yield select();
         const { bpmIsUpdating, bpmShouldIncrement } = state.bpm;
@@ -27,10 +27,10 @@ export function* updateBPM() {
         }
         yield delay(delayTime);
         const elapsedTime = (Date.now() - bpmLastActiveUpdate) / 1000;
-        if (elapsedTime >= BPM_UPDATE_INTERVAL_TIME_2) {
-            delayTime = BPM_UPDATE__DELAY_TIME_3;
-        } else if (elapsedTime >= BPM_UPDATE_INTERVAL_TIME_1) {
-            delayTime = BPM_UPDATE__DELAY_TIME_2;
+        if (elapsedTime >= BPM_UPDATE_INTERVAL_TIME_VERY_FAST) {
+            delayTime = BPM_UPDATE_DELAY_VERY_FAST;
+        } else if (elapsedTime >= BPM_UPDATE_INTERVAL_TIME_FAST) {
+            delayTime = BPM_UPDATE_DELAY_TIME_FAST;
         }
     }
 }

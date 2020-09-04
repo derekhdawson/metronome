@@ -5,11 +5,9 @@ import { AppState } from '../reducers/rootReducer';
 import { setBPM, updateBPM, BPMAction } from '../actions/bpmActions';
 import BPMSliderComponent from '../components/BPMSliderComponent';
 
-const mapStateToProps = (state: AppState) => {
-    return {
-        bpm: state.bpm.bpm,
-    };
-};
+const mapStateToProps = (state: AppState) => ({
+    bpm: state.bpm.bpm,
+});
 
 const mapDispatchToProps = (dispatch: Dispatch<BPMAction>) => ({
     setBPM: (bpm: number) => {

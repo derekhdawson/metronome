@@ -1,14 +1,6 @@
 @use './color.scss';
 @use './sizes.scss';
-
-@mixin add-on-hover-opacity-effect {
-    opacity: 0.6;
-    -webkit-transition: 0.1s;
-    transition: opacity 0.1s;
-    &:hover {
-        opacity: 1;
-    }
-}
+@import './mixins.scss';
 
 .bpm-num-container {
     display: flex;

@@ -1,0 +1,25 @@
+@import './mixins.scss';
+
+$controlPlayPauseButtonSize: 70px;
+
+.control-start-stop-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.control-start-stop-button-container {
+    width: $controlPlayPauseButtonSize;
+    height: $controlPlayPauseButtonSize;
+    border-radius: $controlPlayPauseButtonSize / 2;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include add-on-hover-opacity-effect;
+}
+
+.metronome-stop-button, .metronome-play-button {
+    width: $controlPlayPauseButtonSize * 0.75;
+    height: $controlPlayPauseButtonSize * 0.75;
+}

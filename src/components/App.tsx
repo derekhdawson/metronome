@@ -1,9 +1,9 @@
 import React from 'react';
 import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import Metronome from './components/MetronomePageComponent';
-import configureStore from './store/configureStore';
-import './App.scss';
+import Metronome from './MetronomePageComponent';
+import configureStore from '../store/configureStore';
+import '../styles/app.scss';
 
 const store = configureStore();
 
@@ -12,7 +12,7 @@ const App = () => (
         <Router>
             <div>
                 <nav>
-                    <Link to="/">Metronome</Link>
+                    <Link to="/"></Link>
                 </nav>
                 <Switch>
                     <Route exact path="/" component={Metronome} />
